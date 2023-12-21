@@ -1,0 +1,89 @@
+<div class="hero overlay" style="background-image: url('assets/images/bg_3.jpg');">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-5 mx-auto text-center">
+          <h1 class="text-white">Signup</h1>
+        </div>
+      </div>
+     
+    </div>
+</div>
+<div class="container" style="margin:50px ;">
+    <div class="row align-items-center">
+        <div class="col-lg-12">
+            <form [formGroup]="signupForm">
+              <div class="form-group">
+               <input type="text" class="form-control"  formControlName="fristName" placeholder="First Name">
+              </div>
+              <!-- unlike JS we use  signupForm.controls['fristName'].invalid to use the validator in TS file / .touched if the user clicked in the out / .dirty if the user is writing but didn't complet-->
+              <div *ngIf="signupForm.controls['fristName'].invalid && (signupForm.controls['fristName'].touched ||signupForm.controls['fristName'].dirty )">
+              <!-- like in JS the error massager we use .errors then ['what is the error'] -->
+                <div *ngIf="signupForm.controls['fristName'].errors?.['required']">
+                frist Name is required
+              </div>
+              <!-- like in JS the error massager we use .errors then ['what is the error'] -->
+              <div *ngIf="signupForm.controls['fristName'].errors?.['minlength']">
+                <!-- this is the error massage for the error -->
+                frist Name must have at least 5 chars
+              </div>
+              
+              </div>
+        
+              <div class="form-group">
+               <input type="text" class="form-control"   formControlName="lastName" placeholder="Last Name">
+              </div>
+              <div *ngIf="signupForm.controls['lastName'].invalid && (signupForm.controls['lastName'].touched ||signupForm.controls['lastName'].dirty )">
+                <div *ngIf="signupForm.controls['lastName'].errors?.['required']">
+                  last Name is required
+                </div>
+                <div *ngIf="signupForm.controls['lastName'].errors?.['minlength']">
+                  last Name must have at least 3 chars
+                </div>
+                
+              </div>
+              <div class="form-group">
+               <input type="email" class="form-control"   formControlName="email" placeholder="Email">
+              </div>
+              <div *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].touched ||signupForm.controls['email'].dirty )">
+                <div *ngIf="signupForm.controls['email'].errors?.['required']">
+                  email is required
+                </div>
+                <div *ngIf="signupForm.controls['email'].errors?.['minlength']">
+                  Wrong Email Form
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="Password" class="form-control"   formControlName="pwd" (keyup)=" matchPwd()" placeholder="Enter your Password">
+               </div>
+              <div *ngIf="signupForm.controls['pwd'].invalid && (signupForm.controls['pwd'].touched ||signupForm.controls['pwd'].dirty )">
+                <div *ngIf="signupForm.controls['pwd'].errors?.['required']">
+                  Password is required
+                </div>
+                <div *ngIf="signupForm.controls['pwd'].errors?.['minlength']">
+                  Password must have at least 5 chars and lenghth of 8 chars 
+                </div>
+                
+              </div>
+              <div class="form-group">
+                <input type="Password" class="form-control"   formControlName="confirmPwd" (keyup)=" matchPwd()" placeholder="Confirm your Password">
+               </div>
+               <div *ngIf="!test">
+                The Password Does Not Much
+               </div>
+               <div class="form-group" style="visibility: hidden;">
+                <input type="file" class="form-control" #filePicker (change)="onImageSelected($event)"/>
+               </div>
+               <div class="text-center">
+                <button class="btn ben-success" (click)="filePicker.click()">Select Your Avatar</button>
+               </div>
+               <div class="text-center mt-3">
+                <img [src]="imagePreview" alt="" width="200px">
+               </div>
+              <div class="form-group">
+                <input type="submit" class="btn btn-primary py-3 px-5" value="Signup" (click)="signup()">
+              </div>
+            </form>
+        </div>
+    </div>
+</div>
+

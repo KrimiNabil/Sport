@@ -1,0 +1,20 @@
+<table>
+    <tr>
+        
+        <th>ID</th>
+        <th>Name</th>
+        <th>Capacity</th>
+        <th>Country</th>
+        <th>Action</th>
+        
+    </tr>
+    <tr *ngFor="let s of stadia">
+        <td>{{s._id}}</td>
+        <td>{{s.name}}</td>
+        <td>{{s.country}}</td>
+        <td>{{s.Capacity}}</td>
+    </tr>
+    <td>
+        <button class="btn btn-success">Display</button>
+    </td>
+</table>
